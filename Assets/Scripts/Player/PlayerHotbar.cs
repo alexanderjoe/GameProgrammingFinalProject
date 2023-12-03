@@ -6,13 +6,13 @@ public class PlayerHotbar : MonoBehaviour
 {
     Item[] items;
     int itemCount;
-    const int MAX_ITEMS = 4; //I picked 4 for no reason, probably change later
+    const int MAX_ITEMS = 4; //IAN: I picked 4 for no reason, probably change later
     // Start is called before the first frame update
     void Start()
     {
         itemCount = 0;
         items = new Item[MAX_ITEMS];
-        //maybe have some kind of starting items?
+        //IAN: maybe have some kind of starting items?
     }
 
     // Update is called once per frame

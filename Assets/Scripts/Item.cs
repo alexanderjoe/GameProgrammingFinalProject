@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    [SerializeField]
+    int uses;
+
+    [SerializeField]
+    string name;
+
+    [SerializeField]
+    string description;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //IAN:not sure about initializing fields, item creation should od that
     }
 }
