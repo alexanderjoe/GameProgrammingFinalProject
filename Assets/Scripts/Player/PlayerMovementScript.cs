@@ -42,4 +42,14 @@ public class PlayerMovementScript : MonoBehaviour
     {
         
     }
+
+    public float getSpeed()
+    {
+        return moveSpeed;
+    }
+
+    public void setSpeed(float spd)
+    {
+        moveSpeed = spd;
+    }
 }
