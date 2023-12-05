@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 public static class ProceduralGenerationAlgos
 {
@@ -20,6 +23,21 @@ public static class ProceduralGenerationAlgos
         }
 
         return path;
+    }
+    public static List<Vector2Int> RandomHallway(Vector2Int startPos, int hallwayLength) 
+    {
+        List<Vector2Int> hallway = new List<Vector2Int>();
+        var direction = Direction2D.GetRandomCardinalDirection();
+        var currentPosition = startPos;
+        hallway.Add(startPos);
+
+        for (int i = 0; i < hallwayLength; ++i)
+        {
+            currentPosition += direction;
+            hallway.Add(currentPosition);
+        }
+
+        return hallway;
     }
 }
 
