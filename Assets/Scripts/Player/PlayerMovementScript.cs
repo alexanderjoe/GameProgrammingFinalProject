@@ -12,8 +12,9 @@ public class PlayerMovementScript : MonoBehaviour
     float yDirection = 0.0f;
     bool fast;
     bool facingR = true;
+    bool deductTime = false;
 
-    public float timeRemaining = 5.0f;
+    public float timeRemaining = 3.0f;
 
     //set these from game, probably get set from trigger collider
     bool attack1;
@@ -48,7 +49,6 @@ public class PlayerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         yDirection = Input.GetAxisRaw("Vertical");
         xDirection = Input.GetAxisRaw("Horizontal");
         if(Input.GetKey(KeyCode.LeftShift))
@@ -62,20 +62,28 @@ public class PlayerMovementScript : MonoBehaviour
         {
             attack1 = true;
             attack2 = false;
-            //Debug.Log("ATTTACK1");
+            Debug.Log("ATTACK1");
+            deductTime = true;
         }
         else if (Input.GetKey(KeyCode.K))//Input.GetKey(KeyCode.Mouse1))
         {
-            //Debug.Log("ATTACK2");
+            Debug.Log("ATTACK2");
             attack2 = true;
             attack1 = false;
+            deductTime = true;
         }
-        else
+        else if(timeRemaining <= 0)
         {
             attack1 = false;
             attack2 = false;
+            timeRemaining = 3.0f;
+            deductTime = false;
         }
 
+        if (deductTime && timeRemaining > 0)
+        {
+            timeRemaining -= Time.deltaTime;
+        }
 
         SetAnimationState();
     }
@@ -123,11 +131,11 @@ public class PlayerMovementScript : MonoBehaviour
         isDead = false;
         facingR = true;
         */
-        //Debug.Log("Setting player animation state from fast: "+fast+" attack1: "+attack1+" attack2: "+attack2+" isHit: "+isHit+" isDead: "+isDead);
+        Debug.Log("Setting player animation state from  attack1: "+attack1+" attack2: "+attack2);
         if (xDirection == 0.0f)
         {
             player_animation_state = AnimationStateEnum.Idle;
-            //Debug.Log(" Idle \n");
+            Debug.Log(" Idle \n");
         }
         else if (attack1)
         {
@@ -142,7 +150,7 @@ public class PlayerMovementScript : MonoBehaviour
         else if (isHit)
         {
             player_animation_state = AnimationStateEnum.Hit;
-            //Debug.Log(" ishit \n");
+            Debug.Log(" ishit \n");
         } else if (fast)
         {
             player_animation_state = AnimationStateEnum.Sprint;
@@ -150,7 +158,7 @@ public class PlayerMovementScript : MonoBehaviour
         } else if (isDead)
         {
             player_animation_state= AnimationStateEnum.Dead;
-            //Debug.Log(" dead \n");
+            Debug.Log(" dead \n");
         }
         else
         {
