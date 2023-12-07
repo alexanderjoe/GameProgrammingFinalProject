@@ -12,9 +12,6 @@ public class PlayerMovementScript : MonoBehaviour
     float yDirection = 0.0f;
     bool fast;
     bool facingR = true;
-    bool deductTime = false;
-
-    public float timeRemaining = 3.0f;
 
     //set these from game, probably get set from trigger collider
     bool attack1;
@@ -63,26 +60,18 @@ public class PlayerMovementScript : MonoBehaviour
             attack1 = true;
             attack2 = false;
             Debug.Log("ATTACK1");
-            deductTime = true;
         }
-        else if (Input.GetKey(KeyCode.K))//Input.GetKey(KeyCode.Mouse1))
+        if (Input.GetKey(KeyCode.K))//Input.GetKey(KeyCode.Mouse1))
         {
             Debug.Log("ATTACK2");
             attack2 = true;
             attack1 = false;
-            deductTime = true;
         }
-        else if(timeRemaining <= 0)
+        else
         {
             attack1 = false;
             attack2 = false;
-            timeRemaining = 3.0f;
-            deductTime = false;
-        }
-
-        if (deductTime && timeRemaining > 0)
-        {
-            timeRemaining -= Time.deltaTime;
+            
         }
 
         SetAnimationState();
@@ -121,7 +110,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void SetAnimationState()
     {
-        AnimationStateEnum player_animation_state;
+        AnimationStateEnum player_animation_state = AnimationStateEnum.Idle;
 
         /*
          * fast = false;
@@ -132,40 +121,41 @@ public class PlayerMovementScript : MonoBehaviour
         facingR = true;
         */
         Debug.Log("Setting player animation state from  attack1: "+attack1+" attack2: "+attack2);
-        if (xDirection == 0.0f)
+        if (xDirection == 0.0f && !attack1 && !attack2)
         {
             player_animation_state = AnimationStateEnum.Idle;
-            Debug.Log(" Idle \n");
+            //Debug.Log(" Idle \n");
         }
-        else if (attack1)
+        if(xDirection != 0.0f && !fast)
+        {
+            player_animation_state = AnimationStateEnum.Run;
+            //Debug.Log(" running \n");
+        }
+        if (attack1)
         {
             player_animation_state = AnimationStateEnum.Attack1;
             Debug.Log(" attack1 \n");
         }
-        else if (attack2)
+        if (attack2)
         {
             player_animation_state = AnimationStateEnum.Attack2;
-            Debug.Log(" attack2 where enum is: "+AnimationStateEnum.Attack2);
+            Debug.Log(" attack2 \n");
         }
-        else if (isHit)
+        if (isHit)
         {
             player_animation_state = AnimationStateEnum.Hit;
-            Debug.Log(" ishit \n");
-        } else if (fast)
+            //Debug.Log(" ishit \n");
+        }
+        if (fast)
         {
             player_animation_state = AnimationStateEnum.Sprint;
-            Debug.Log(" sprinting \n");
-        } else if (isDead)
+            //Debug.Log(" sprinting \n");
+        } 
+        if (isDead)
         {
             player_animation_state= AnimationStateEnum.Dead;
-            Debug.Log(" dead \n");
+            //Debug.Log(" dead \n");
         }
-        else
-        {
-            player_animation_state = AnimationStateEnum.Run;
-            Debug.Log(" running \n");
-        }
-
         animator.SetInteger(PLAYER_ANIMATION_STATE, (int)player_animation_state);
     }
 
