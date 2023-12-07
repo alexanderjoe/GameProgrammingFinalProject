@@ -11,9 +11,10 @@ public class PlayerMovementScript : MonoBehaviour
     public float xDirection = 0.0f;
     float yDirection = 0.0f;
     bool fast;
-    bool facingL;
-    bool facingR;
-    
+    bool facingR = true;
+
+    public float timeRemaining = 5.0f;
+
     //set these from game, probably get set from trigger collider
     bool attack1;
     bool attack2;
@@ -42,12 +43,12 @@ public class PlayerMovementScript : MonoBehaviour
         isHit = false;
         isDead = false;
         facingR = true;
-        facingL = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         yDirection = Input.GetAxisRaw("Vertical");
         xDirection = Input.GetAxisRaw("Horizontal");
         if(Input.GetKey(KeyCode.LeftShift))
@@ -56,9 +57,26 @@ public class PlayerMovementScript : MonoBehaviour
         } else
         {
             fast = false;
-            //Debug.Log("Set fast back to FALSE");
         }
-        //Flip();
+        if (Input.GetKey(KeyCode.J))//KeyCode.Mouse0))
+        {
+            attack1 = true;
+            attack2 = false;
+            //Debug.Log("ATTTACK1");
+        }
+        else if (Input.GetKey(KeyCode.K))//Input.GetKey(KeyCode.Mouse1))
+        {
+            //Debug.Log("ATTACK2");
+            attack2 = true;
+            attack1 = false;
+        }
+        else
+        {
+            attack1 = false;
+            attack2 = false;
+        }
+
+
         SetAnimationState();
     }
 
@@ -72,21 +90,14 @@ public class PlayerMovementScript : MonoBehaviour
         {
             rb.velocity = new Vector2(xDirection * moveSpeed, yDirection * moveSpeed);
         }
-
-        if(xDirection < 0.0f && !facingL)
+        if (xDirection > 0 && !facingR)
         {
-            facingL = true;
-            facingR = false;
-            Flip();
-        } else if(xDirection > 0.0f && !facingR)
-        {
-            facingR = true;
-            facingL = false;
             Flip();
         }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
+        else if (xDirection < 0 && facingR)
+        {
+            Flip();
+        }
         
     }
 
@@ -103,7 +114,16 @@ public class PlayerMovementScript : MonoBehaviour
     private void SetAnimationState()
     {
         AnimationStateEnum player_animation_state;
-        //Debug.Log("Setting player animation state to: ");
+
+        /*
+         * fast = false;
+        attack1 = false;
+        attack2 = false;
+        isHit = false;
+        isDead = false;
+        facingR = true;
+        */
+        //Debug.Log("Setting player animation state from fast: "+fast+" attack1: "+attack1+" attack2: "+attack2+" isHit: "+isHit+" isDead: "+isDead);
         if (xDirection == 0.0f)
         {
             player_animation_state = AnimationStateEnum.Idle;
@@ -112,12 +132,12 @@ public class PlayerMovementScript : MonoBehaviour
         else if (attack1)
         {
             player_animation_state = AnimationStateEnum.Attack1;
-            //Debug.Log(" attack1 \n");
+            Debug.Log(" attack1 \n");
         }
         else if (attack2)
         {
             player_animation_state = AnimationStateEnum.Attack2;
-            //Debug.Log(" attack2 \n");
+            Debug.Log(" attack2 where enum is: "+AnimationStateEnum.Attack2);
         }
         else if (isHit)
         {
@@ -126,7 +146,7 @@ public class PlayerMovementScript : MonoBehaviour
         } else if (fast)
         {
             player_animation_state = AnimationStateEnum.Sprint;
-            //Debug.Log(" sprinting \n");
+            Debug.Log(" sprinting \n");
         } else if (isDead)
         {
             player_animation_state= AnimationStateEnum.Dead;
@@ -135,7 +155,7 @@ public class PlayerMovementScript : MonoBehaviour
         else
         {
             player_animation_state = AnimationStateEnum.Run;
-            //Debug.Log(" running \n");
+            Debug.Log(" running \n");
         }
 
         animator.SetInteger(PLAYER_ANIMATION_STATE, (int)player_animation_state);
@@ -143,19 +163,9 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void Flip()
     {
-        //I think this is all I need
-        //animator.transform.Rotate(0, 180, 0);
-
-        if (facingL)
-        {
-            facingL = false;
-            facingR = true;
-            animator.transform.Rotate(0, 180, 0);
-        } else if (facingR)
-        {
-            facingL = true;
-            facingR = false;
-            animator.transform.Rotate(0, 180, 0);
-        }
+        facingR = !facingR;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }
