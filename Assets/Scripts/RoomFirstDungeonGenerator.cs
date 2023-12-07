@@ -24,7 +24,7 @@ public class RoomFirstDungeonGenerator : SimpleWalkGenerator
     private void CreateRooms()
     {
         var roomList = ProceduralGenerationAlgos.BinarySpacePartition(new BoundsInt((Vector3Int)startPosition, new Vector3Int
-            (dungeonHeight, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
+            (dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
 
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
 
