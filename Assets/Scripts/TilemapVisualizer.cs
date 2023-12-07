@@ -76,13 +76,10 @@ public class TilemapVisualizer : MonoBehaviour
             tile = wallDiagonalCornerUpLeft;
         }else if (WallTypesHelper.wallDiagonalCornerUpRight.Contains(typeAsInt)){
             tile = wallDiagonalCornerUpRight;
-        }
-        else if (WallTypesHelper.wallBottmEightDirections.Contains(typeAsInt))
-        {
+        }else if (WallTypesHelper.wallBottmEightDirections.Contains(typeAsInt)){
             tile = wallBottom;
         }
-        else if (WallTypesHelper.wallFullEightDirections.Contains(typeAsInt))
-        {
+        else if (WallTypesHelper.wallFullEightDirections.Contains(typeAsInt)){
             tile = wallFull;
         }
 
