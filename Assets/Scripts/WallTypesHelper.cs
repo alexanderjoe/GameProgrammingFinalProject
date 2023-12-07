@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallTypesHelper : MonoBehaviour
+public static class WallTypesHelper
 {
     public static HashSet<int> wallTop = new HashSet<int>
     {
-        0b1111,
-        0b0110,
-        0b0011,
         0b0010,
-        0b1010,
-        0b1100,
         0b1110,
+        0b1111, 
+        0b0011,
         0b1011,
-        0b0111
+        0b0111,
+        0b1010,
+        0b0110,
+        0b1000
     };
 
     public static HashSet<int> wallSideLeft = new HashSet<int>
