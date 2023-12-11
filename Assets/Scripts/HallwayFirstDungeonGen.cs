@@ -13,6 +13,14 @@ public class HallwayFirstDungeonGen : SimpleWalkGenerator
     [Range(0.1f, 1)]
     private float roomPercent = 0.8f;
 
+    //PCG Data
+    private Dictionary<Vector2Int, HashSet<Vector2Int>> roomsDictionary = new Dictionary<Vector2Int, HashSet<Vector2Int>>();
+    private HashSet<Vector2Int> floorPositions, hallPositions;
+
+    //Gizmos Data
+    private List<Color> roomColors = new List<Color>();
+    [SerializeField]
+    private bool showRoomGizmo = false, showFloorGizmo;
 
     protected override void RunProceduralGeneration()
     {
