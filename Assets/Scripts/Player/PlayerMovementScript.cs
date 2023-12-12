@@ -6,7 +6,7 @@ public class PlayerMovementScript : MonoBehaviour
 {
     const string PLAYER_ANIMATION_STATE = "Player_States";
     Animator animator;
-    float moveSpeed = 5.0f;
+    public float moveSpeed = 5.0f;
     Rigidbody2D rb;
     public float xDirection = 0.0f;
     float yDirection = 0.0f;
