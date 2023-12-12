@@ -38,8 +38,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: New Layer 1
-    uniqueID: 2574726823
+  - name: Floors
+    uniqueID: 2430297651
+    locked: 0
+  - name: Walls
+    uniqueID: 1657231321
     locked: 0
   - name: Default
     uniqueID: 0
