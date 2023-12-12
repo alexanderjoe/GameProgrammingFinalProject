@@ -4085,6 +4085,8 @@ MonoBehaviour:
   hallLength: 15
   hallCount: 10
   roomPercent: 0.356
+  showRoomGizmo: 0
+  showFloorGizmo: 0
 --- !u!4 &752490683
 Transform:
   m_ObjectHideFlags: 0
@@ -40849,7 +40851,7 @@ Transform:
   m_GameObject: {fileID: 1502865968}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.6, y: -5.9, z: 0}
+  m_LocalPosition: {x: 11.7, y: 16.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -157,10 +157,17 @@ public class HallwayFirstDungeonGen : SimpleWalkGenerator
         foreach (var roomPosition in roomToCreate)
         {
             var roomFloor = RunRandomWalk(randomWalkParams, roomPosition);
+            SaveRoomData(roomPosition, roomFloor); 
             roomPositions.UnionWith(roomFloor);
         }
 
         return roomPositions;
+    }
+
+    private void SaveRoomData(Vector2Int roomPosition, HashSet<Vector2Int> roomFloor)
+    {
+        roomsDictionary[roomPosition] = roomFloor;
+        roomColors.Add(UnityEngine.Random.ColorHSV());
     }
 
     private List<List<Vector2Int>> CreateHalls(HashSet<Vector2Int> floorPositions, HashSet<Vector2Int> potentialRoomPositions)
@@ -177,6 +184,8 @@ public class HallwayFirstDungeonGen : SimpleWalkGenerator
             potentialRoomPositions.Add(currPos);
             floorPositions.UnionWith(hall);
         }
+        hallPositions = new HashSet<Vector2Int>(floorPositions);
+
 
         return halls;
     }
