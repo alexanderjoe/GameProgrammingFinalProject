@@ -33,7 +33,6 @@ public class HallwayFirstDungeonGen : SimpleWalkGenerator
         HashSet<Vector2Int> potentialRoomPositions = new HashSet<Vector2Int>();
 
         List<List<Vector2Int>> hallways = CreateHalls(floorPositions, potentialRoomPositions);
-
         CreateHalls(floorPositions, potentialRoomPositions);
         HashSet<Vector2Int> roomPositions = CreateRooms(potentialRoomPositions);
 
