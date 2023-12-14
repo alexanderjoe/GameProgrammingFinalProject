@@ -34,8 +34,6 @@ public class BoingoCreatureScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float playerX = player.transform.position.x;
-        float bossX = BoingoCreature.transform.position.x;
         var tempTransform = transform;
         var bossScale = tempTransform.localScale;
         if (player.transform.position.x >= BoingoCreature.transform.position.x && bossScale.x > 0)
