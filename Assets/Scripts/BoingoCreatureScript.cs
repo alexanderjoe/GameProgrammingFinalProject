@@ -12,16 +12,8 @@ public class BoingoCreatureScript : MonoBehaviour
     GameObject player;
     public bool isSpawned;
     public bool isAlive;
-    IEnumerator SpawnTestTokenUnifDist(float minTime, float maxTime)
-    {
-        while (true)
-        {
-            float waitTime = Random.Range(minTime, maxTime);
-            yield return new WaitForSeconds(waitTime);
-            Vector3 position = BoingoCreature.transform.position;
-            Instantiate(oingoAttack, position, Quaternion.identity);
-        }
-    }
+    public int distanceFromPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +21,7 @@ public class BoingoCreatureScript : MonoBehaviour
         oingoAttackScript = gameObject.GetComponent<OingoAttackScript>();
         player = GameObject.FindGameObjectWithTag("Player");
         isSpawned = true;
+        distanceFromPlayer = 100;
     }
 
     // Update is called once per frame
@@ -44,7 +37,10 @@ public class BoingoCreatureScript : MonoBehaviour
         {
             FlipBoss();
         }
+        if(distanceFromPlayer <= 15)
+        {
 
+        }
     }
     void FlipBoss()
     {
