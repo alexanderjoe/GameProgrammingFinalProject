@@ -12,6 +12,7 @@ public class CreateGrid : MonoBehaviour
     public GameObject nodePrefab;          // world tile prefab
 
     //these are the bounds of where we are searching in the world for tiles, have to use world coords to check for tiles in the tile map
+    //TODO: change these to move with procedural generation
     public int scanStartX = -300, scanStartY = -300, scanFinishX = 300, scanFinishY = 300, gridSizeX, gridSizeY;
 
     private List<GameObject> unsortedNodes;   // all the nodes in the world
@@ -304,77 +305,5 @@ public class CreateGrid : MonoBehaviour
             }
         }
         return wt;
-    }
-
-    int GetDistance(WorldTile nodeA, WorldTile nodeB)
-    {
-        int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
-        int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
-
-        if (dstX > dstY)
-            return 14 * dstY + 10 * (dstX - dstY);
-        return 14 * dstX + 10 * (dstY - dstX);
-    }
-
-    List<WorldTile> RetracePath(WorldTile startNode, WorldTile targetNode)
-    {
-        List<WorldTile> path = new List<WorldTile>();
-        WorldTile currentNode = targetNode;
-
-        while (currentNode != startNode)
-        {
-            path.Add(currentNode);
-            currentNode = currentNode.parent;
-        }
-
-        path.Reverse();
-        return path;
-    }
-
-    void FindPath(Vector3 startPosition, Vector3 endPosition)
-    {
-        WorldTile startNode = GetWorldTileByCellPosition(startPosition);
-        WorldTile targetNode = GetWorldTileByCellPosition(endPosition);
-
-        List<WorldTile> openSet = new List<WorldTile>();
-        HashSet<WorldTile> closedSet = new HashSet<WorldTile>();
-        openSet.Add(startNode);
-
-        while (openSet.Count > 0)
-        {
-            WorldTile currentNode = openSet[0];
-            for (int i = 1; i < openSet.Count; i++)
-            {
-                if (openSet[i].fCost < currentNode.fCost || openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost)
-                {
-                    currentNode = openSet[i];
-                }
-            }
-
-            openSet.Remove(currentNode);
-            closedSet.Add(currentNode);
-
-            if (currentNode == targetNode)
-            {
-                RetracePath(startNode, targetNode);
-                return;
-            }
-
-            foreach (WorldTile neighbour in currentNode.myNeighbours)
-            {
-                if (!neighbour.walkable || closedSet.Contains(neighbour)) continue;
-
-                int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
-                if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
-                {
-                    neighbour.gCost = newMovementCostToNeighbour;
-                    neighbour.hCost = GetDistance(neighbour, targetNode);
-                    neighbour.parent = currentNode;
-
-                    if (!openSet.Contains(neighbour))
-                        openSet.Add(neighbour);
-                }
-            }
-        }
     }
 }
