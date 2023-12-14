@@ -13,6 +13,14 @@ public class HallwayFirstDungeonGen : SimpleWalkGenerator
     [Range(0.1f, 1)]
     private float roomPercent = 0.8f;
 
+    //PCG Data
+    private Dictionary<Vector2Int, HashSet<Vector2Int>> roomsDictionary = new Dictionary<Vector2Int, HashSet<Vector2Int>>();
+    private HashSet<Vector2Int> floorPositions, hallPositions;
+
+    //Gizmos Data
+    private List<Color> roomColors = new List<Color>();
+    [SerializeField]
+    private bool showRoomGizmo = false, showFloorGizmo;
 
     protected override void RunProceduralGeneration()
     {
@@ -25,7 +33,6 @@ public class HallwayFirstDungeonGen : SimpleWalkGenerator
         HashSet<Vector2Int> potentialRoomPositions = new HashSet<Vector2Int>();
 
         List<List<Vector2Int>> hallways = CreateHalls(floorPositions, potentialRoomPositions);
-
         CreateHalls(floorPositions, potentialRoomPositions);
         HashSet<Vector2Int> roomPositions = CreateRooms(potentialRoomPositions);
 
@@ -149,10 +156,17 @@ public class HallwayFirstDungeonGen : SimpleWalkGenerator
         foreach (var roomPosition in roomToCreate)
         {
             var roomFloor = RunRandomWalk(randomWalkParams, roomPosition);
+            SaveRoomData(roomPosition, roomFloor); 
             roomPositions.UnionWith(roomFloor);
         }
 
         return roomPositions;
+    }
+
+    private void SaveRoomData(Vector2Int roomPosition, HashSet<Vector2Int> roomFloor)
+    {
+        roomsDictionary[roomPosition] = roomFloor;
+        roomColors.Add(UnityEngine.Random.ColorHSV());
     }
 
     private List<List<Vector2Int>> CreateHalls(HashSet<Vector2Int> floorPositions, HashSet<Vector2Int> potentialRoomPositions)
@@ -169,6 +183,8 @@ public class HallwayFirstDungeonGen : SimpleWalkGenerator
             potentialRoomPositions.Add(currPos);
             floorPositions.UnionWith(hall);
         }
+        hallPositions = new HashSet<Vector2Int>(floorPositions);
+
 
         return halls;
     }
