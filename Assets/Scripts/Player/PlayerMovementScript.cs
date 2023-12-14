@@ -120,7 +120,7 @@ public class PlayerMovementScript : MonoBehaviour
         isDead = false;
         facingR = true;
         */
-        Debug.Log("Setting player animation state from  attack1: "+attack1+" attack2: "+attack2);
+        Debug.Log("Setting player animation state from  attack1: " + attack1);//+" attack2: "+attack2);
         if (xDirection == 0.0f && !attack1 && !attack2)
         {
             player_animation_state = AnimationStateEnum.Idle;
@@ -139,7 +139,7 @@ public class PlayerMovementScript : MonoBehaviour
         if (attack2)
         {
             player_animation_state = AnimationStateEnum.Attack2;
-            Debug.Log(" attack2 \n");
+            //Debug.Log(" attack2 \n");
         }
         if (isHit)
         {
