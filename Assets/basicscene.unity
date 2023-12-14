@@ -326,8 +326,8 @@ BoxCollider2D:
   m_Offset: {x: -0.015558004, y: 0.1632644}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.63602537, y: 0.19195399}
-    oldSize: {x: 0.59, y: 0.53}
+    pivot: {x: 0.63602537, y: 0.2069178}
+    oldSize: {x: 0.59, y: 0.54}
     newSize: {x: 0.59, y: 0.53}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4310,6 +4310,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2769495870178670970, guid: 0737acb13a4e6144bac8f83d78376d52, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4723107735738678597, guid: 3bdd730929a8a024b906d779a6ff35fa, type: 3}
+    - target: {fileID: 2769495870178670970, guid: 0737acb13a4e6144bac8f83d78376d52, type: 3}
       propertyPath: m_SortingLayer
       value: -1
       objectReference: {fileID: 0}
@@ -4359,7 +4363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8385226143460851807, guid: 0737acb13a4e6144bac8f83d78376d52, type: 3}
       propertyPath: m_Name
-      value: CommonSoldier
+      value: skeleton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10015,9 +10019,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 9117613147066208960, guid: 1e47d90dd4fbe7e478d687c4bbe43970, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1774382422}
     - targetCorrespondingSourceObject: {fileID: 9117613147066208960, guid: 1e47d90dd4fbe7e478d687c4bbe43970, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2049725401}
@@ -106944,7 +106945,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.889226
+  orthographic size: 4.9046645
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -106969,11 +106970,11 @@ Transform:
   m_GameObject: {fileID: 1774382419}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -0.06, z: -10}
+  m_LocalPosition: {x: -7.78, y: -1.77, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1304591070}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1785968412
 GameObject:
@@ -107282,6 +107283,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1774382422}
   - {fileID: 1158199332}
   - {fileID: 1785968414}
   - {fileID: 2005723956}

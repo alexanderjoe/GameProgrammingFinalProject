@@ -39,7 +39,7 @@ public class PlayerAttack : MonoBehaviour
         {
             attack_hitbox2.SetActive(true);
         }
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(.1f);
         if (attack1)
         {
             attack_hitbox1.SetActive(false);
@@ -49,6 +49,18 @@ public class PlayerAttack : MonoBehaviour
         {
             attack_hitbox2.SetActive(false);
             attack2 = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name.Contains("skele"))
+        {
+            //deal damage
+            Debug.Log("Skele HIT");
+        } else
+        {
+            Debug.Log("\n\n\n "+gameObject.name);
         }
     }
 }

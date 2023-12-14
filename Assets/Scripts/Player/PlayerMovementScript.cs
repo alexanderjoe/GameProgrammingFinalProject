@@ -59,11 +59,11 @@ public class PlayerMovementScript : MonoBehaviour
         {
             attack1 = true;
             attack2 = false;
-            Debug.Log("ATTACK1");
+           // Debug.Log("ATTACK1");
         }
         if (Input.GetKey(KeyCode.K))//Input.GetKey(KeyCode.Mouse1))
         {
-            Debug.Log("ATTACK2");
+            //Debug.Log("ATTACK2");
             attack2 = true;
             attack1 = false;
         }
@@ -120,7 +120,7 @@ public class PlayerMovementScript : MonoBehaviour
         isDead = false;
         facingR = true;
         */
-        Debug.Log("Setting player animation state from  attack1: " + attack1);//+" attack2: "+attack2);
+        //Debug.Log("Setting player animation state from  attack1: " + attack1);//+" attack2: "+attack2);
         if (xDirection == 0.0f && !attack1 && !attack2)
         {
             player_animation_state = AnimationStateEnum.Idle;
