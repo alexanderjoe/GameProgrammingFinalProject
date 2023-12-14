@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,10 +16,17 @@ public class RoomFirstDungeonGenerator : SimpleWalkGenerator
     private int offset = 1;
     [SerializeField]
     private bool RandomWalkRooms = false;
+    
+    private Vector2Int safeStartPosition = Vector2Int.zero;
 
     protected override void RunProceduralGeneration()
     {
         CreateRooms();
+    }
+    
+    public Vector2Int FindSafeSpawnLocation()
+    {
+        return safeStartPosition;
     }
 
     private void CreateRooms()
@@ -43,6 +51,11 @@ public class RoomFirstDungeonGenerator : SimpleWalkGenerator
         {
             roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
         }
+        
+        // choose a random room to start from
+        var randomRoomCenter = roomCenters[Random.Range(0, roomCenters.Count)];
+        safeStartPosition = randomRoomCenter;
+        
 
         HashSet<Vector2Int> hallways = ConnectRooms(roomCenters);
         floor.UnionWith(hallways);
