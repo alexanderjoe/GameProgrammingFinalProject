@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 8490050755121161477}
   - component: {fileID: 9147278907453229104}
   - component: {fileID: -3182341562055532012}
+  - component: {fileID: 7665845881745772442}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -250,7 +251,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7cdbe40ab07916e40bd8491ec1cbe5d3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -260,7 +261,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &9147278907453229104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +293,14 @@ MonoBehaviour:
   player_damage_dealt: 0
   player_attack_speed: 0
   player_armor: 0
+--- !u!81 &7665845881745772442
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192509132482323228}
+  m_Enabled: 1
 --- !u!1 &9039311984673261371
 GameObject:
   m_ObjectHideFlags: 0

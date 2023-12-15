@@ -4621,6 +4621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generator: {fileID: 1034538241}
+  portalPrefab: {fileID: 760569526839458499, guid: aef0fcee3f7ef164e8615a4f48021115, type: 3}
 --- !u!4 &1216279514
 Transform:
   m_ObjectHideFlags: 0

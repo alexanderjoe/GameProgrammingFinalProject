@@ -18,6 +18,7 @@ public class RoomFirstDungeonGenerator : SimpleWalkGenerator
     private bool RandomWalkRooms = false;
     
     private Vector2Int safeStartPosition = Vector2Int.zero;
+    private Vector2Int portalPosition = Vector2Int.zero;
 
     protected override void RunProceduralGeneration()
     {
@@ -27,6 +28,11 @@ public class RoomFirstDungeonGenerator : SimpleWalkGenerator
     public Vector2Int FindSafeSpawnLocation()
     {
         return safeStartPosition;
+    }
+    
+    public Vector2Int FindPortalSpawnLocation()
+    {
+        return portalPosition;
     }
 
     private void CreateRooms()
@@ -54,7 +60,15 @@ public class RoomFirstDungeonGenerator : SimpleWalkGenerator
         
         // choose a random room to start from
         var randomRoomCenter = roomCenters[Random.Range(0, roomCenters.Count)];
+        var portalRoomCenter = roomCenters[Random.Range(0, roomCenters.Count)];
+        
+        while (randomRoomCenter == portalRoomCenter)
+        {
+            portalRoomCenter = roomCenters[Random.Range(0, roomCenters.Count)];
+        }
+        
         safeStartPosition = randomRoomCenter;
+        portalPosition = portalRoomCenter;
         
 
         HashSet<Vector2Int> hallways = ConnectRooms(roomCenters);
