@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,24 +8,32 @@ public class GameManager : MonoBehaviour
     public GameState gameState;
     public GameObject deathScreen;
 
-    private GameObject player;
-    private PlayerStats playerStats;
+    private GameObject _player;
+    private EnemySpawner _enemySpawner;
+    private PlayerStats _playerStats;
 
     // Start is called before the first frame update
     void Start()
     {
+        _enemySpawner = GetComponent<EnemySpawner>();
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _playerStats = _player.GetComponent<PlayerStats>();
+
         gameState.level += 1;
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerStats = player.GetComponent<PlayerStats>();
+
         generator.GenerateDungeon();
-        var safePlace = generator.FindSafeSpawnLocation();
         SpawnPortal();
-        player.transform.position = new Vector3(safePlace.x, safePlace.y, 0);
+
+        var spawnLocs = generator.FindEnemySpawnLocations();
+        _enemySpawner.SpawnEnemies(spawnLocs, gameState.level);
+
+        var safePlace = generator.FindSafeSpawnLocation();
+        _player.transform.position = new Vector3(safePlace.x, safePlace.y, 0);
     }
 
     private void Update()
     {
-        if (playerStats.GetHealth() <= 0)
+        if (_playerStats.GetHealth() <= 0)
         {
             Time.timeScale = 0;
             deathScreen.SetActive(true);

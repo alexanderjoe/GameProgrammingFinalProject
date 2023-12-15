@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
@@ -63,6 +64,10 @@ public class PlayerStats : MonoBehaviour
 
     void UpdateUI()
     {
+        if (SceneManager.GetActiveScene().name == "PreStartScene")
+        {
+            return;
+        }
         healthBar.fillAmount = (float)player_health / 100;
         armorText.text = "Armor (10c): " + player_armor;
         damageText.text = "Attack (3c): " + player_damage_dealt;

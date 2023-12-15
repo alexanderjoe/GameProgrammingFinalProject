@@ -289,11 +289,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d041a16ec2ba54589354e25e4acb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: {fileID: 11400000, guid: b31dac4ce99a74942946c5594f714df6, type: 2}
   player_health: 0
   player_speed: 0
   player_damage_dealt: 0
   player_attack_speed: 0
   player_armor: 0
+  healthBar: {fileID: 0}
+  armorText: {fileID: 0}
+  damageText: {fileID: 0}
+  coinText: {fileID: 0}
 --- !u!81 &7665845881745772442
 AudioListener:
   m_ObjectHideFlags: 0

@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 967cb6139aaa7c4429f55f1532a2e685, type: 3}
   m_Name: GameState
   m_EditorClassIdentifier: 
+  coinsCollected: 0
+  enemiesKilled: 0
+  level: 1
