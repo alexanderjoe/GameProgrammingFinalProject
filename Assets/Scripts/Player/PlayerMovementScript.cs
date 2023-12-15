@@ -9,7 +9,7 @@ public class PlayerMovementScript : MonoBehaviour
     public float moveSpeed = 5.0f;
     Rigidbody2D rb;
     public float xDirection = 0.0f;
-    float yDirection = 0.0f;
+    public float yDirection = 0.0f;
     bool fast;
     bool facingR = true;
 
@@ -121,12 +121,12 @@ public class PlayerMovementScript : MonoBehaviour
         facingR = true;
         */
         //Debug.Log("Setting player animation state from  attack1: " + attack1);//+" attack2: "+attack2);
-        if (xDirection == 0.0f && !attack1 && !attack2)
+        if (xDirection == 0.0f && yDirection == 0.0f && !attack1 && !attack2)
         {
             player_animation_state = AnimationStateEnum.Idle;
             //Debug.Log(" Idle \n");
         }
-        if(xDirection != 0.0f && !fast)
+        if(!fast && (xDirection!= 0 || yDirection != 0))
         {
             player_animation_state = AnimationStateEnum.Run;
             //Debug.Log(" running \n");
