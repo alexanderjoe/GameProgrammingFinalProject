@@ -100,7 +100,7 @@ public class OingoAttackScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //idk what the plan is here, reduce health or die?
+           //do nothing now
         }
 
     }
