@@ -4,6 +4,8 @@ public class CoinScript : MonoBehaviour
 {
     private AudioSource _coinSound;
     private bool _isCollected;
+    
+    public GameState gameState;
 
     void Start()
     {
@@ -19,6 +21,7 @@ public class CoinScript : MonoBehaviour
             _coinSound.Play();
             // set invisible
             GetComponent<SpriteRenderer>().enabled = false;
+            gameState.coinsCollected += 1;
         }
     }
 }

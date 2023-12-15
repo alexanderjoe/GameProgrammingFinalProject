@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
+    public GameState gameState;
+    
     [SerializeField]
     int player_health;
 
@@ -38,6 +40,20 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
         healthBar.fillAmount = (float)player_health / 100;
+        
+        // use coins collected to upgrade stats
+        // for every 3 coins, increase damage dealt by 1
+        {
+            var amount = gameState.coinsCollected / 3;
+            player_damage_dealt = 10 + amount;
+        }
+        
+        // for every 10 coins, increase armor by 1
+        {
+            var amount = gameState.coinsCollected / 10;
+            player_armor = amount;
+        }
+        
     }
 
     public int GetDamageDealt()
@@ -60,10 +76,16 @@ public class PlayerStats : MonoBehaviour
         return player_health;
     }
 
-    public void ReduceHP(int reduction)
+    public void DamagePlayer(int amount)
     {
-        reduction -= player_armor;
-        player_health -= reduction;
+        // apply armor
+        amount -= player_armor;
+        if (amount < 0)
+        {
+            amount = 1;
+        }
+        
+        player_health = Mathf.Clamp(player_health - amount, 0, 100);
     }
     
 }

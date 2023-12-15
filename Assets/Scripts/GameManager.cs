@@ -1,21 +1,43 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public RoomFirstDungeonGenerator generator;
     public GameObject portalPrefab;
+    public GameState GameState;
+    public GameObject deathScreen;
+    
     private GameObject player;
+    private PlayerStats playerStats;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameState.level += 1;
         player = GameObject.FindGameObjectWithTag("Player");
+        playerStats = player.GetComponent<PlayerStats>();
         generator.GenerateDungeon();
         var safePlace = generator.FindSafeSpawnLocation();
         SpawnPortal();
         player.transform.position = new Vector3(safePlace.x, safePlace.y, 0);
+    }
+
+    private void Update()
+    {
+        if (playerStats.GetHealth() <= 0)
+        {
+            Time.timeScale = 0;
+            deathScreen.SetActive(true);
+        }
+    }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
     }
 
     void SpawnPortal()
