@@ -29,17 +29,21 @@ public class BoingoCreatureScript : MonoBehaviour
     {
         var tempTransform = transform;
         var bossScale = tempTransform.localScale;
-        if (player.transform.position.x >= BoingoCreature.transform.position.x && bossScale.x > 0)
+        if (player.transform.position.x >= BoingoCreature.transform.position.x && bossScale.x > 0 && player.transform.position.y >= BoingoCreature.transform.position.y)
         {
             FlipBoss();
         }
-        else if (player.transform.position.x <= BoingoCreature.transform.position.x && bossScale.x < 0)
+        else if (player.transform.position.x <= BoingoCreature.transform.position.x && bossScale.x < 0 && player.transform.position.y <= BoingoCreature.transform.position.y)
         {
             FlipBoss();
         }
-        if(distanceFromPlayer <= 15)
+        else if(player.transform.position.x <= BoingoCreature.transform.position.x && bossScale.x < 0 && player.transform.position.y >= BoingoCreature.transform.position.y)
         {
-
+            FlipBoss();
+        }
+        else if (player.transform.position.x >= BoingoCreature.transform.position.x && bossScale.x < 0 && player.transform.position.y <= BoingoCreature.transform.position.y)
+        {
+            FlipBoss();
         }
     }
     void FlipBoss()
@@ -47,6 +51,7 @@ public class BoingoCreatureScript : MonoBehaviour
         var tempTransform = transform;
         var bossScale = tempTransform.localScale;
         bossScale.x *= -1;
+        bossScale.y *= -1;
         tempTransform.localScale = bossScale;
     }
 }
