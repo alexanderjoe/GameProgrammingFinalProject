@@ -1,25 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TeleporterScript : MonoBehaviour
 {
-    public Transform destination;
-    GameObject player;
-
-    private void Awake()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            if (Vector2.Distance(player.transform.position, transform.position) > 0.3f)
-            {
-                player.transform.position = destination.transform.position;
-            }
+            other.enabled = false;
+            SceneManager.LoadScene("PreStartScene");
         }
     }
-
 }
