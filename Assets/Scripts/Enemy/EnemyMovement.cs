@@ -7,6 +7,10 @@ public class SkeletonMovement : MonoBehaviour
     public int chaseDistance = 10;
     public bool isChasing = false;
 
+    bool tryAttack = false;
+
+    Animator animator;
+
     void Update()
     {
 
@@ -17,10 +21,22 @@ public class SkeletonMovement : MonoBehaviour
             if (distanceToPlayer <= chaseDistance)
             {
                 isChasing = true;
+
+                if(distanceToPlayer <= 1.0)
+                {
+                    //attack animation
+
+                    tryAttack = true;
+                } else
+                {
+                    tryAttack = false;
+                }
             }
             else
             {
                 isChasing = false;
+                
+
             }
 
             if (isChasing)
@@ -31,4 +47,6 @@ public class SkeletonMovement : MonoBehaviour
             }
         }
     }
+
+
 }

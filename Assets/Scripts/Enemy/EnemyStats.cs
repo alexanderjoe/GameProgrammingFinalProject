@@ -21,7 +21,7 @@ public class EnemyStats : MonoBehaviour
     {
         hp = 20;
         armor = 1;
-        dmg = 3;
+        dmg = 5;
     }
 
     // Update is called once per frame
@@ -48,5 +48,10 @@ public class EnemyStats : MonoBehaviour
         //TODO;
         //default to walking
         //else swing or take damage from player
+    }
+
+    public int getDmg()
+    {
+        return dmg;
     }
 }
