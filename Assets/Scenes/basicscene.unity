@@ -4428,7 +4428,7 @@ MonoBehaviour:
   minRoomHeight: 12
   dungeonWidth: 80
   dungeonHeight: 60
-  offset: 9
+  offset: 2
   RandomWalkRooms: 1
 --- !u!4 &1034538242
 Transform:

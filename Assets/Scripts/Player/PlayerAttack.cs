@@ -62,6 +62,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (collision.gameObject.name.Contains("skele"))
         {
+            _es = collision.gameObject.GetComponent<EnemyStats>();
             //deal damage
             _es.ReduceHP(_ps.GetDamageDealt());
             Debug.Log("Skele HIT for "+_ps.GetDamageDealt());
