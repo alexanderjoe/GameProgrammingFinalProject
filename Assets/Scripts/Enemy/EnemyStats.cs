@@ -13,6 +13,9 @@ public class EnemyStats : MonoBehaviour
     [SerializeField]
     int dmg;
 
+    [SerializeField]
+    GameObject coinPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,15 +27,20 @@ public class EnemyStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Death
         if (hp <= 0)
         {
+            Instantiate(coinPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
 
     public void ReduceHP(int reduction)
     {
+        Debug.Log("Skeleton damaged!");
+        reduction -= armor;
         hp -= reduction;
+        Debug.Log(hp);
     }
 
     void setAnimation()

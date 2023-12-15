@@ -45,7 +45,7 @@ public class PlayerAttack : MonoBehaviour
         {
             attack_hitbox2.SetActive(true);
         }
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.01f);
         if (attack1)
         {
             attack_hitbox1.SetActive(false);
@@ -58,16 +58,32 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name.Contains("skele"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            //deal damage
-            _es.ReduceHP(_ps.GetDamageDealt());
-            Debug.Log("Skele HIT for "+_ps.GetDamageDealt());
-        } else
+            _es = collision.gameObject.GetComponent<EnemyStats>();
+
+            if (_ps == null)
+            {
+                _ps = GetComponent<PlayerStats>();
+            }
+
+            if (_es != null && _ps != null)
+            {
+                _es.ReduceHP(_ps.GetDamageDealt());
+                Debug.Log("Skele HIT for " + _ps.GetDamageDealt());
+            }
+            else
+            {
+                Debug.Log("EnemyStats or PlayerStats component not found on the collided object or player object.");
+            }
+        }
+        else
         {
-            Debug.Log("\n\n\n "+gameObject.name);
+            Debug.Log("Collision with a GameObject containing "+collision.gameObject.tag);
         }
     }
+
+
 }

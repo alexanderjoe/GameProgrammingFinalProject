@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField]
     int player_armor; //IAN: maybe we have stuff that provides Damage reduction as armor?
+    
+    [SerializeField]
+    public Image healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +37,7 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        healthBar.fillAmount = (float)player_health / 100;
     }
 
     public int GetDamageDealt()
@@ -58,6 +62,7 @@ public class PlayerStats : MonoBehaviour
 
     public void ReduceHP(int reduction)
     {
+        reduction -= player_armor;
         player_health -= reduction;
     }
     

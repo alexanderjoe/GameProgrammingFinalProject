@@ -61,7 +61,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.4435424, y: -0.23050237}
@@ -92,6 +92,8 @@ GameObject:
   - component: {fileID: 8490050755121161477}
   - component: {fileID: 9147278907453229104}
   - component: {fileID: -3182341562055532012}
+  - component: {fileID: 7665845881745772442}
+  - component: {fileID: 5457369622255057836}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -221,7 +223,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.021905765, y: -0.16738802}
+  m_Offset: {x: -0.04869558, y: -0.16738802}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -232,7 +234,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4180359, y: 0.77283204}
+  m_Size: {x: 0.2768332, y: 0.77283204}
   m_EdgeRadius: 0
 --- !u!50 &8490050755121161477
 Rigidbody2D:
@@ -246,11 +248,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7cdbe40ab07916e40bd8491ec1cbe5d3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -260,7 +262,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &9147278907453229104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +294,28 @@ MonoBehaviour:
   player_damage_dealt: 0
   player_attack_speed: 0
   player_armor: 0
+--- !u!81 &7665845881745772442
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192509132482323228}
+  m_Enabled: 1
+--- !u!114 &5457369622255057836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192509132482323228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1d0122b8fc97b4aadeb245f9b0be8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack_hitbox1: {fileID: 0}
+  attack_hitbox2: {fileID: 0}
 --- !u!1 &9039311984673261371
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +377,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.26891944, y: -0.1816079}
