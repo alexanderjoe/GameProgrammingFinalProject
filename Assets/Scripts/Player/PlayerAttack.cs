@@ -85,12 +85,12 @@ public class PlayerAttack : MonoBehaviour
             }
             else
             {
-                Debug.Log("EnemyStats or PlayerStats component not found on the collided object or player object.");
+                //Debug.Log("EnemyStats or PlayerStats component not found on the collided object or player object.");
             }
         }
         else
         {
-            Debug.Log("Collision with a GameObject containing "+collision.gameObject.tag);
+            //Debug.Log("Collision with a GameObject containing "+collision.gameObject.tag);
         }
     }
 

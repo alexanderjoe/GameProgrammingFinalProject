@@ -35,7 +35,8 @@ public class EnemyAttack : MonoBehaviour
             if (distanceToPlayer <= 1.0)
             {
                 //attack animation
-                Debug.Log("Attacking player");
+
+                //Debug.Log("Attacking player");
                 tryAttack = true;
             }
             else
@@ -54,11 +55,11 @@ public class EnemyAttack : MonoBehaviour
                 _ps = collision.gameObject.GetComponent<PlayerStats>();
                 _es = gameObject.GetComponent<EnemyStats>();
                 _ps.DamagePlayer(_es.getDmg());
-                Debug.Log("Player HIT for " + _es.getDmg());
+                //Debug.Log("Player HIT for " + _es.getDmg());
             }
             else
             {
-                Debug.Log("Collision with a GameObject containing " + collision.gameObject.tag);
+                //Debug.Log("Collision with a GameObject containing " + collision.gameObject.tag);
             }
         }
     }
