@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/PreStartScene.unity
     guid: 2f74611ec4054d7429c4df7510eefd58
   - enabled: 1
-    path: Assets/basicscene.unity
+    path: Assets/Scenes/basicscene.unity
     guid: 0bc4088dad5c5b044bd8933bde7d4691
   m_configObjects: {}
