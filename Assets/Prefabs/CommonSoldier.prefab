@@ -96,8 +96,9 @@ GameObject:
   - component: {fileID: 8828367907157021089}
   - component: {fileID: 2769495870178670970}
   - component: {fileID: 6015941759344605311}
-  - component: {fileID: -2756103849821022125}
   - component: {fileID: -2612758787246304919}
+  - component: {fileID: 2700361546398300240}
+  - component: {fileID: 8736900272562166376}
   m_Layer: 0
   m_Name: CommonSoldier
   m_TagString: Untagged
@@ -206,21 +207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3db72469e1e07b459f19a4646062131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-2756103849821022125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8385226143460851807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6b7c9294db99c4468a210ca9bd9d786, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  armor: 0
-  dmg: 0
 --- !u!114 &-2612758787246304919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,4 +220,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1344384143345643901, guid: df9b7ff4ce642fb4db8963af069a8571, type: 3}
-  moveSpeed: 5
+  moveSpeed: 1
+--- !u!114 &2700361546398300240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8385226143460851807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 496b7c61e45414245a900b01fc714925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  armor: 0
+  dmg: 0
+--- !u!50 &8736900272562166376
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8385226143460851807}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
