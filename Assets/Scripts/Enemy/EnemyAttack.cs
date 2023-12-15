@@ -10,6 +10,7 @@ public class EnemyAttack : MonoBehaviour
     bool isChasing = false;
 
     EnemyStats _es;
+    public PlayerStats _ps;
 
     bool tryAttack = false;
 
@@ -20,7 +21,7 @@ public class EnemyAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -34,7 +35,7 @@ public class EnemyAttack : MonoBehaviour
             if (distanceToPlayer <= 1.0)
             {
                 //attack animation
-
+                Debug.Log("Attacking player");
                 tryAttack = true;
             }
             else
@@ -48,22 +49,18 @@ public class EnemyAttack : MonoBehaviour
     {
         if (tryAttack)
         {
-
-        }
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            PlayerStats _ps = player.GetComponent<PlayerStats>();
-
-            if (_ps != null)
+            if (collision.gameObject.CompareTag("Player"))
             {
-                _ps.ReduceHP(
-                    _es.getDmg());
+                _ps = collision.gameObject.GetComponent<PlayerStats>();
+                _es = gameObject.GetComponent<EnemyStats>();
+                _ps.DamagePlayer(_es.getDmg());
                 Debug.Log("Player HIT for " + _es.getDmg());
             }
-        }
-        else
-        {
-            Debug.Log("Collision with a GameObject containing " + collision.gameObject.tag);
+            else
+            {
+                Debug.Log("Collision with a GameObject containing " + collision.gameObject.tag);
+            }
         }
     }
+
 }

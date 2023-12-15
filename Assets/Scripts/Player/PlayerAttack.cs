@@ -16,6 +16,8 @@ public class PlayerAttack : MonoBehaviour
     bool attack1 = false;
     bool attack2 = false;
 
+    bool tryingAttack = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,15 +31,21 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
         {
             attack1 = true;
+            tryingAttack = true;
             StartCoroutine(Attack_Delay());
         } else if (Input.GetKeyDown(KeyCode.K)){
             attack2 = true;
+            tryingAttack = true;
             StartCoroutine(Attack_Delay());
+        } else
+        {
+            tryingAttack=false;
         }
     }
 
     IEnumerator Attack_Delay()
     {
+        Debug.Log("attack1: " + attack1 + " attack2: " + attack2);
         if (attack1)
         {
             attack_hitbox1.SetActive(true);
@@ -60,7 +68,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (tryingAttack && collision.gameObject.CompareTag("Enemy"))
         {
             _es = collision.gameObject.GetComponent<EnemyStats>();
 
@@ -73,6 +81,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 _es.ReduceHP(_ps.GetDamageDealt());
                 Debug.Log("Skele HIT for " + _ps.GetDamageDealt());
+                tryingAttack = false;
             }
             else
             {

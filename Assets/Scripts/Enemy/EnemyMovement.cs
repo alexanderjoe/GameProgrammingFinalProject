@@ -11,6 +11,10 @@ public class SkeletonMovement : MonoBehaviour
 
     Animator animator;
 
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     void Update()
     {
 
