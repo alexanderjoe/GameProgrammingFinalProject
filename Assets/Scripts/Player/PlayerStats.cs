@@ -36,5 +36,29 @@ public class PlayerStats : MonoBehaviour
         
     }
 
+    public int GetDamageDealt()
+    {
+        return player_damage_dealt;
+    }
+
+    public float GetAttackSpeed()
+    {
+        return player_attack_speed;
+    }
+
+    public int GetArmor()
+    {
+        return player_armor;
+    }
+
+    public int GetHealth()
+    {
+        return player_health;
+    }
+
+    public void ReduceHP(int reduction)
+    {
+        player_health -= reduction;
+    }
     
 }

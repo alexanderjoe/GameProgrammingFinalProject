@@ -7,7 +7,10 @@ public class PlayerAttack : MonoBehaviour
     public GameObject attack_hitbox1;
     public GameObject attack_hitbox2;
 
-    // enemy;
+    GameLogicScript _gls;
+    EnemyStats _es;
+    PlayerStats _ps;
+
     
 
     bool attack1 = false;
@@ -60,8 +63,8 @@ public class PlayerAttack : MonoBehaviour
         if (collision.gameObject.name.Contains("skele"))
         {
             //deal damage
-            
-            Debug.Log("Skele HIT");
+            _es.ReduceHP(_ps.GetDamageDealt());
+            Debug.Log("Skele HIT for "+_ps.GetDamageDealt());
         } else
         {
             Debug.Log("\n\n\n "+gameObject.name);

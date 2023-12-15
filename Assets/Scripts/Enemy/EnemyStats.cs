@@ -1,8 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class EnemyStats : MonoBehaviour
 {
     [SerializeField]
     int hp;
@@ -24,24 +24,21 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(hp <= 0)
+        if (hp <= 0)
         {
             Destroy(gameObject);
         }
     }
 
-    public void Reduce_Hp(int reduction)
+    public void ReduceHP(int reduction)
     {
         hp -= reduction;
     }
 
-    public void Reduce_Armor(int reduction)
+    void setAnimation()
     {
-        if(armor > 0 && reduction >= 1)
-        {
-            armor -= reduction;
-        }
+        //TODO;
+        //default to walking
+        //else swing or take damage from player
     }
-
-
 }
