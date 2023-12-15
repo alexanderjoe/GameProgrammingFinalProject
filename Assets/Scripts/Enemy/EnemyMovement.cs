@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SkeletonMovement : MonoBehaviour
 {
-    public Transform player; 
+    public GameObject player; 
     public float moveSpeed = 5f;
     public int chaseDistance = 10;
     public bool isChasing = false;
@@ -12,7 +12,7 @@ public class SkeletonMovement : MonoBehaviour
 
         if (player != null)
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
             if (distanceToPlayer <= chaseDistance)
             {
@@ -25,7 +25,7 @@ public class SkeletonMovement : MonoBehaviour
 
             if (isChasing)
             {
-                Vector3 direction = (player.position - transform.position).normalized;
+                Vector3 direction = (player.transform.position - transform.position).normalized;
 
                 transform.Translate(direction * moveSpeed * Time.deltaTime);
             }

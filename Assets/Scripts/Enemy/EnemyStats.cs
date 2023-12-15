@@ -13,6 +13,9 @@ public class EnemyStats : MonoBehaviour
     [SerializeField]
     int dmg;
 
+    [SerializeField]
+    GameObject coinPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +30,7 @@ public class EnemyStats : MonoBehaviour
         //Death
         if (hp <= 0)
         {
+            Instantiate(coinPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
