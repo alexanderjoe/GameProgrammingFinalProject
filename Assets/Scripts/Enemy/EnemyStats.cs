@@ -24,6 +24,7 @@ public class EnemyStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Death
         if (hp <= 0)
         {
             Destroy(gameObject);
@@ -32,7 +33,9 @@ public class EnemyStats : MonoBehaviour
 
     public void ReduceHP(int reduction)
     {
+        Debug.Log("Skeleton damaged!");
         hp -= reduction;
+        Debug.Log(hp);
     }
 
     void setAnimation()
