@@ -36,5 +36,5 @@ public class PlayerStats : MonoBehaviour
         
     }
 
-    //TODO: gets sets
+    
 }

@@ -7,6 +7,9 @@ public class PlayerAttack : MonoBehaviour
     public GameObject attack_hitbox1;
     public GameObject attack_hitbox2;
 
+    // enemy;
+    
+
     bool attack1 = false;
     bool attack2 = false;
 
@@ -57,6 +60,7 @@ public class PlayerAttack : MonoBehaviour
         if (collision.gameObject.name.Contains("skele"))
         {
             //deal damage
+            
             Debug.Log("Skele HIT");
         } else
         {
