@@ -1,23 +1,21 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
     public RoomFirstDungeonGenerator generator;
     public GameObject portalPrefab;
-    public GameState GameState;
+    public GameState gameState;
     public GameObject deathScreen;
-    
+
     private GameObject player;
     private PlayerStats playerStats;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameState.level += 1;
+        gameState.level += 1;
         player = GameObject.FindGameObjectWithTag("Player");
         playerStats = player.GetComponent<PlayerStats>();
         generator.GenerateDungeon();

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,10 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     public Image healthBar;
 
+    [SerializeField] private TextMeshProUGUI armorText;
+    [SerializeField] private TextMeshProUGUI damageText;
+    [SerializeField] private TextMeshProUGUI coinText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +44,7 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.fillAmount = (float)player_health / 100;
+        UpdateUI();
         
         // use coins collected to upgrade stats
         // for every 3 coins, increase damage dealt by 1
@@ -56,6 +61,14 @@ public class PlayerStats : MonoBehaviour
         
     }
 
+    void UpdateUI()
+    {
+        healthBar.fillAmount = (float)player_health / 100;
+        armorText.text = "Armor (10c): " + player_armor;
+        damageText.text = "Attack (3c): " + player_damage_dealt;
+        coinText.text = "Coins: " + gameState.coinsCollected;
+    }
+    
     public int GetDamageDealt()
     {
         return player_damage_dealt;
