@@ -34,6 +34,7 @@ public class EnemyStats : MonoBehaviour
     public void ReduceHP(int reduction)
     {
         Debug.Log("Skeleton damaged!");
+        reduction -= armor;
         hp -= reduction;
         Debug.Log(hp);
     }

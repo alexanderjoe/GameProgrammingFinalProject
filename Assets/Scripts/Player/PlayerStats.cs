@@ -62,6 +62,7 @@ public class PlayerStats : MonoBehaviour
 
     public void ReduceHP(int reduction)
     {
+        reduction -= player_armor;
         player_health -= reduction;
     }
     

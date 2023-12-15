@@ -64,10 +64,9 @@ public class PlayerAttack : MonoBehaviour
         {
             _es = collision.gameObject.GetComponent<EnemyStats>();
 
-            // Check if PlayerStats component exists on the current GameObject
             if (_ps == null)
             {
-                _ps = GetComponent<PlayerStats>(); // Assuming PlayerStats is on the same GameObject as PlayerAttack
+                _ps = GetComponent<PlayerStats>();
             }
 
             if (_es != null && _ps != null)

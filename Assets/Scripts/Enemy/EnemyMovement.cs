@@ -3,17 +3,32 @@ using UnityEngine;
 public class SkeletonMovement : MonoBehaviour
 {
     public Transform player; 
-    public float moveSpeed = 5f; 
+    public float moveSpeed = 5f;
+    public int chaseDistance = 10;
+    public bool isChasing = false;
 
     void Update()
     {
+
         if (player != null)
         {
-            Vector3 direction = player.position - transform.position;
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-            direction.Normalize();
+            if (distanceToPlayer <= chaseDistance)
+            {
+                isChasing = true;
+            }
+            else
+            {
+                isChasing = false;
+            }
 
-            transform.Translate(direction * moveSpeed * Time.deltaTime);
+            if (isChasing)
+            {
+                Vector3 direction = (player.position - transform.position).normalized;
+
+                transform.Translate(direction * moveSpeed * Time.deltaTime);
+            }
         }
     }
 }
