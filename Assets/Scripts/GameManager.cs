@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         if (_playerStats.GetHealth() <= 0)
         {
-            Time.timeScale = 0;
+            // Time.timeScale = 0;
             deathScreen.SetActive(true);
         }
     }

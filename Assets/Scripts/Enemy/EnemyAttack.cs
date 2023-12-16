@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
@@ -10,7 +7,6 @@ public class EnemyAttack : MonoBehaviour
     bool isChasing = false;
 
     EnemyStats _es;
-    public PlayerStats _ps;
 
     bool tryAttack = false;
 
@@ -48,20 +44,14 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (tryAttack)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            if (collision.gameObject.CompareTag("Player"))
+            if (tryAttack)
             {
-                _ps = collision.gameObject.GetComponent<PlayerStats>();
+                var playerCombat = collision.gameObject.GetComponent<PlayerCombat>();
                 _es = gameObject.GetComponent<EnemyStats>();
-                _ps.DamagePlayer(_es.getDmg());
-                //Debug.Log("Player HIT for " + _es.getDmg());
-            }
-            else
-            {
-                //Debug.Log("Collision with a GameObject containing " + collision.gameObject.tag);
+                playerCombat.TakeDamage(_es.getDmg());
             }
         }
     }
-
 }

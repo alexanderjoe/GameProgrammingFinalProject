@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
+    public Animator animator;
     public GameState gameState;
     
     [SerializeField]
@@ -104,6 +103,14 @@ public class PlayerStats : MonoBehaviour
         }
         
         player_health = Mathf.Clamp(player_health - amount, 0, 100);
+        
+        if (player_health <= 0)
+        {
+            animator.SetBool("IsDead", true);
+            GetComponent<PlayerMovementScript>().enabled = false;
+            GetComponent<PlayerCombat>().enabled = false;
+            GetComponent<Rigidbody2D>().simulated = false;
+        }
     }
     
 }

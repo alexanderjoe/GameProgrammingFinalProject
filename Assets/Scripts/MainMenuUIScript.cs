@@ -7,4 +7,9 @@ public class MainMenuUIScript : MonoBehaviour
     {
         SceneManager.LoadScene("Scenes/PreStartScene");
     }
+    
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

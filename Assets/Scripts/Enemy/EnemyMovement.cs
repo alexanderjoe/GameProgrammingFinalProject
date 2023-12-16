@@ -2,22 +2,21 @@ using UnityEngine;
 
 public class SkeletonMovement : MonoBehaviour
 {
-    public GameObject player; 
+    public GameObject player;
     public float moveSpeed = 5f;
     public int chaseDistance = 10;
-    public bool isChasing = false;
+    public bool isChasing;
 
-    bool tryAttack = false;
-
-    Animator animator;
+    private bool _tryAttack = false;
+    private Animator _animator;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
+
     void Update()
     {
-
         if (player != null)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
@@ -26,21 +25,20 @@ public class SkeletonMovement : MonoBehaviour
             {
                 isChasing = true;
 
-                if(distanceToPlayer <= 1.0)
+                if (distanceToPlayer <= 1.0)
                 {
                     //attack animation
 
-                    tryAttack = true;
-                } else
+                    _tryAttack = true;
+                }
+                else
                 {
-                    tryAttack = false;
+                    _tryAttack = false;
                 }
             }
             else
             {
                 isChasing = false;
-                
-
             }
 
             if (isChasing)
@@ -51,6 +49,4 @@ public class SkeletonMovement : MonoBehaviour
             }
         }
     }
-
-
 }

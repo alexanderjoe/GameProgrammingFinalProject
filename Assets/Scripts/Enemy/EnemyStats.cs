@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyStats : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class EnemyStats : MonoBehaviour
 
     [SerializeField]
     GameObject coinPrefab;
+    
+    [SerializeField] private Image healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +30,7 @@ public class EnemyStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Death
+        healthBar.fillAmount = (float)hp / 20;
         if (hp <= 0)
         {
             Instantiate(coinPrefab, transform.position, Quaternion.identity);
@@ -37,10 +40,8 @@ public class EnemyStats : MonoBehaviour
 
     public void ReduceHP(int reduction)
     {
-        Debug.Log("Skeleton damaged!");
         reduction -= armor;
         hp -= reduction;
-        Debug.Log(hp);
     }
 
     void setAnimation()

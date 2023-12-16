@@ -30,6 +30,7 @@ public class PlayerMovementScript : MonoBehaviour
         Attack2 = 5,
         Attack1 = 6
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,30 +49,14 @@ public class PlayerMovementScript : MonoBehaviour
     {
         yDirection = Input.GetAxisRaw("Vertical");
         xDirection = Input.GetAxisRaw("Horizontal");
-        if(Input.GetKey(KeyCode.LeftShift))
+        
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             fast = true;
-        } else
-        {
-            fast = false;
-        }
-        if (Input.GetKey(KeyCode.J))//KeyCode.Mouse0))
-        {
-            attack1 = true;
-            attack2 = false;
-           // Debug.Log("ATTACK1");
-        }
-        if (Input.GetKey(KeyCode.K))//Input.GetKey(KeyCode.Mouse1))
-        {
-            //Debug.Log("ATTACK2");
-            attack2 = true;
-            attack1 = false;
         }
         else
         {
-            attack1 = false;
-            attack2 = false;
-            
+            fast = false;
         }
 
         SetAnimationState();
@@ -81,12 +66,13 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (fast)
         {
-            rb.velocity = new Vector2(xDirection * (moveSpeed*2), yDirection * (moveSpeed*2));
+            rb.velocity = new Vector2(xDirection * (moveSpeed * 2), yDirection * (moveSpeed * 2));
         }
         else
         {
             rb.velocity = new Vector2(xDirection * moveSpeed, yDirection * moveSpeed);
         }
+
         if (xDirection > 0 && !facingR)
         {
             Flip();
@@ -95,15 +81,14 @@ public class PlayerMovementScript : MonoBehaviour
         {
             Flip();
         }
-        
     }
 
-    public float getSpeed()
+    public float GetSpeed()
     {
         return moveSpeed;
     }
 
-    public void setSpeed(float spd)
+    public void SetSpeed(float spd)
     {
         moveSpeed = spd;
     }
@@ -126,36 +111,31 @@ public class PlayerMovementScript : MonoBehaviour
             player_animation_state = AnimationStateEnum.Idle;
             //Debug.Log(" Idle \n");
         }
-        if(!fast && (xDirection!= 0 || yDirection != 0))
+
+        if (!fast && (xDirection != 0 || yDirection != 0))
         {
             player_animation_state = AnimationStateEnum.Run;
             //Debug.Log(" running \n");
         }
-        if (attack1)
-        {
-            player_animation_state = AnimationStateEnum.Attack1;
-            Debug.Log(" attack1 \n");
-        }
-        if (attack2)
-        {
-            player_animation_state = AnimationStateEnum.Attack2;
-            //Debug.Log(" attack2 \n");
-        }
+
         if (isHit)
         {
             player_animation_state = AnimationStateEnum.Hit;
             //Debug.Log(" ishit \n");
         }
+
         if (fast)
         {
             player_animation_state = AnimationStateEnum.Sprint;
             //Debug.Log(" sprinting \n");
-        } 
+        }
+
         if (isDead)
         {
-            player_animation_state= AnimationStateEnum.Dead;
+            player_animation_state = AnimationStateEnum.Dead;
             //Debug.Log(" dead \n");
         }
+
         animator.SetInteger(PLAYER_ANIMATION_STATE, (int)player_animation_state);
     }
 
