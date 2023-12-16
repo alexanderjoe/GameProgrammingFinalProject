@@ -1,30 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemyStats : MonoBehaviour
 {
-    [SerializeField]
-    int hp;
+    [SerializeField] int hp;
 
-    [SerializeField]
-    int armor;
+    [SerializeField] int armor;
 
-    [SerializeField]
-    int dmg;
+    [SerializeField] int dmg;
 
-    [SerializeField]
-    GameObject coinPrefab;
-    
+    [SerializeField] GameObject coinPrefab;
+
     [SerializeField] private Image healthBar;
 
-    // Start is called before the first frame update
+    [SerializeField] private GameState gameState;
+
     void Start()
     {
-        hp = 20;
-        armor = 1;
-        dmg = 5;
+        // use level to determine stats
+        hp = 20 + (gameState.level * 5);
+        armor = 1 + (gameState.level / 2);
+        dmg = 5 + (gameState.level * 2);
     }
 
     // Update is called once per frame

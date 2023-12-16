@@ -676,6 +676,7 @@ MonoBehaviour:
   dmg: 0
   coinPrefab: {fileID: 5048967467176523044, guid: 8a6d7568ca5079b47b270021da2e98db, type: 3}
   healthBar: {fileID: 5724953990861049174}
+  gameState: {fileID: 11400000, guid: b31dac4ce99a74942946c5594f714df6, type: 2}
 --- !u!50 &8736900272562166376
 Rigidbody2D:
   serializedVersion: 4
@@ -687,8 +688,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_UseAutoMass: 1
+  m_Mass: 0.3290164
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
