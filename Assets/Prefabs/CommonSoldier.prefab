@@ -675,6 +675,7 @@ MonoBehaviour:
   armor: 0
   dmg: 0
   coinPrefab: {fileID: 5048967467176523044, guid: 8a6d7568ca5079b47b270021da2e98db, type: 3}
+  potionPrefab: {fileID: 5342852994302784983, guid: bdc17369d60fc614391544cc78b23d7e, type: 3}
   healthBar: {fileID: 5724953990861049174}
   gameState: {fileID: 11400000, guid: b31dac4ce99a74942946c5594f714df6, type: 2}
 --- !u!50 &8736900272562166376

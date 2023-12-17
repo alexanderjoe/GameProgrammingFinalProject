@@ -93,6 +93,11 @@ public class PlayerStats : MonoBehaviour
         return player_health;
     }
 
+    public void SetHealth(int hp)
+    {
+        player_health = hp;
+    }
+
     public void DamagePlayer(int amount)
     {
         // apply armor
