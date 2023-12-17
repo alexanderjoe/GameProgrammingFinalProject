@@ -13,6 +13,7 @@ public class SkeletonMovement : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        _animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -45,7 +46,7 @@ public class SkeletonMovement : MonoBehaviour
             {
                 Vector3 direction = (player.transform.position - transform.position).normalized;
 
-                transform.Translate(direction * moveSpeed * Time.deltaTime);
+                transform.Translate(direction * (moveSpeed * Time.deltaTime));
             }
         }
     }

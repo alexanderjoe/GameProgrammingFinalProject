@@ -5,6 +5,7 @@ using Random = System.Random;
 public class EnemyStats : MonoBehaviour
 {
     [SerializeField] int hp;
+    private int _maxHp;
 
     [SerializeField] int armor;
 
@@ -23,7 +24,7 @@ public class EnemyStats : MonoBehaviour
     void Start()
     {
         // use level to determine stats
-        hp = 20 + (gameState.level * 5);
+        _maxHp = hp = 20 + (gameState.level * 5);
         armor = 1 + (gameState.level / 2);
         dmg = 5 + (gameState.level * 2);
     }
@@ -32,18 +33,18 @@ public class EnemyStats : MonoBehaviour
     void Update()
     {
         int r = rand.Next(101);
-        healthBar.fillAmount = (float)hp / 20;
+        healthBar.fillAmount = (float)hp / _maxHp;
         if (hp <= 0)
         {
-            Debug.Log("SKELETON DROPPPING " + r);
-            if(r <= 65)
+            if (r <= 65)
             {
                 Instantiate(coinPrefab, transform.position, Quaternion.identity);
-            } else if(r >= 35)
+            }
+            else
             {
                 Instantiate(potionPrefab, transform.position, Quaternion.identity);
             }
-            
+
             Destroy(gameObject);
         }
     }

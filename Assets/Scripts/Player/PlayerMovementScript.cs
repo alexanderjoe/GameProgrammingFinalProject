@@ -1,9 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovementScript : MonoBehaviour
 {
+    public AudioClip[] walkClips;
+    public AudioClip[] runClips;
+    private AudioSource _audioSource;
+
     const string PLAYER_ANIMATION_STATE = "Player_States";
     Animator animator;
     public float moveSpeed = 5.0f;
@@ -36,6 +38,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        _audioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
         fast = false;
         attack1 = false;
         attack2 = false;
@@ -49,7 +52,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         yDirection = Input.GetAxisRaw("Vertical");
         xDirection = Input.GetAxisRaw("Horizontal");
-        
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
             fast = true;
@@ -60,6 +63,32 @@ public class PlayerMovementScript : MonoBehaviour
         }
 
         SetAnimationState();
+
+        if (xDirection != 0 || yDirection != 0)
+        {
+            if (fast)
+            {
+                PlayRunSound();
+            }
+            else
+            {
+                PlayWalkSound();
+            }
+        }
+    }
+
+    void PlayWalkSound()
+    {
+        var clip = walkClips[Random.Range(0, walkClips.Length)];
+        if (!_audioSource.isPlaying)
+            _audioSource.PlayOneShot(clip);
+    }
+
+    void PlayRunSound()
+    {
+        var clip = runClips[Random.Range(0, runClips.Length)];
+        if (!_audioSource.isPlaying)
+            _audioSource.PlayOneShot(clip);
     }
 
     private void FixedUpdate()
