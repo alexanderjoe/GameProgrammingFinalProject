@@ -1,3 +1,4 @@
+using Enemy;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
@@ -15,6 +16,9 @@ public class PlayerCombat : MonoBehaviour
 
     private PlayerStats _ps;
     private AudioSource _audioSource;
+    
+    private static readonly int Hit = Animator.StringToHash("Hit");
+    private static readonly int Attack1 = Animator.StringToHash("Attack");
 
     private void Start()
     {
@@ -28,7 +32,7 @@ public class PlayerCombat : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.J))
             {
-                animator.SetTrigger("Attack");
+                animator.SetTrigger(Attack1);
                 _nextAttackTime = Time.time + 1f / attackRate;
             }
         }
@@ -42,7 +46,8 @@ public class PlayerCombat : MonoBehaviour
         
         foreach (var enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyStats>().ReduceHP(_ps.GetDamageDealt());
+            enemy.GetComponent<EnemyAttack>().TakeDamage(_ps.GetDamageDealt());
+            // enemy.GetComponent<EnemyStats>().ReduceHP(_ps.GetDamageDealt());
         }
     }
     
@@ -54,7 +59,7 @@ public class PlayerCombat : MonoBehaviour
     // When the player is damaged by another entity.
     public void TakeDamage(int damage)
     {
-        animator.SetTrigger("Hit");
+        animator.SetTrigger(Hit);
         _ps.DamagePlayer(damage);
     }
 

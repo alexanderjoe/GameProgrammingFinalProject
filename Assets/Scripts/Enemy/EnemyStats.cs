@@ -24,9 +24,9 @@ public class EnemyStats : MonoBehaviour
     void Start()
     {
         // use level to determine stats
-        _maxHp = hp = 20 + (gameState.level * 5);
-        armor = 1 + (gameState.level / 2);
-        dmg = 5 + (gameState.level * 2);
+        _maxHp = hp = 20 + ((gameState.level - 1) * 5);
+        armor = 1 + (gameState.level - 1) / 2;
+        dmg = 5 + (gameState.level - 1) * 2;
     }
 
     // Update is called once per frame
@@ -53,13 +53,6 @@ public class EnemyStats : MonoBehaviour
     {
         reduction -= armor;
         hp -= reduction;
-    }
-
-    void setAnimation()
-    {
-        //TODO;
-        //default to walking
-        //else swing or take damage from player
     }
 
     public int getDmg()
